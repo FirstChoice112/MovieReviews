@@ -33,7 +33,7 @@ body {
 
 .nav-bar {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   height: 7.2rem;
   padding: 0 3.2rem;
