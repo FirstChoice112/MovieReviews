@@ -1,7 +1,9 @@
 import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
-// import './index.css'
-// import App from './App.jsx'
+import "./index.css";
+import App from "./App.jsx";
+
+//send request: http://www.omdbapi.com/?apikey=[]&
 
 import StarRating from "./StarRating";
 
@@ -17,12 +19,14 @@ function Test() {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <StarRating
+    {/* <StarRating
       maxRating={5}
       messages={["Terrible", "Bad", "Okay", "Good", "Amazing"]}
     />
-    <StarRating size={24} color="red" className="test" defaultRating={3} />
-    {/* <App /> */}
-    <Test />
+    <StarRating size={24} color="red" className="test" defaultRating={3} /> */}
+    <App />
+    {/* <Test /> */}
   </StrictMode>
 );
+
+//omdbAPI-key: http://www.omdbapi.com/?i=tt3896198&apikey=b6ec69d9
