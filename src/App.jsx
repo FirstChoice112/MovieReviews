@@ -57,11 +57,33 @@ const KEY = "b6ec69d9";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(function () {
-    fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
-      .then((res) => res.json())
-      .then((data) => setMovies(data.Search));
+    async function fetchMovies() {
+      try {
+        setIsLoading(true);
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`
+        );
+
+        if (!res.ok) throw new Error("Network response was not ok");
+
+        const data = await res.json();
+        if (data.Response === "False") {
+          throw new Error("Movie not found");
+        }
+
+        setMovies(data.Search);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchMovies();
   }, []);
 
   return (
@@ -73,7 +95,18 @@ export default function App() {
 
       <Main>
         <Box>
-          <MovieList movies={movies} />
+          {/* {isLoading ? <Loader /> : <MovieList movies={movies} />} */}
+          {isLoading && <Loader />}
+          {!isLoading && !error && movies.length === 0 && (
+            <p className="error">No movies found</p>
+          )}
+          {!isLoading && !error && movies.length > 0 && (
+            <>
+              <NumResults movies={movies} />
+            </>
+          )}
+          {!isLoading && !error && <MovieList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
           <WatchedSummary watched={watched} />
@@ -82,6 +115,18 @@ export default function App() {
       </Main>
     </>
   );
+}
+
+function ErrorMessage({ message }) {
+  return (
+    <p className="error">
+      <span>⛔</span> {message}
+    </p>
+  );
+}
+
+function Loader() {
+  return <p className="loader">Loading...</p>;
 }
 
 function NavBar({ children }) {
