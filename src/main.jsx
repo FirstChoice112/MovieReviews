@@ -3,8 +3,6 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 
-//send request: http://www.omdbapi.com/?apikey=[]&
-
 import StarRating from "./StarRating";
 
 function Test() {
@@ -28,5 +26,3 @@ createRoot(document.getElementById("root")).render(
     {/* <Test /> */}
   </StrictMode>
 );
-
-//omdbAPI-key: http://www.omdbapi.com/?i=tt3896198&apikey=b6ec69d9
