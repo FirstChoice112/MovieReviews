@@ -13,10 +13,7 @@ import { WatchedSummary } from "./WatchedSummary";
 import { MovieList } from "./MovieList";
 import { Box } from "./Box";
 
-export const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
-export const KEY = "b6ec69d9";
+export const KEY = import.meta.env.VITE_OMDB_API_KEY;
 
 export default function App() {
   const [query, setQuery] = useState("");
