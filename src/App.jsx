@@ -1,18 +1,18 @@
 import "./App.css";
 import { useState } from "react";
-import { MovieDetails } from "./MovieDetails";
-import { ErrorMessage } from "./ErrorMessage";
-import { Loader } from "./Loader";
-import { NavBar } from "./NavBar";
-import { NumResults } from "./NumResults";
-import { Search } from "./Search";
-import { Main } from "./Main.1";
-import { WatchedMovieList } from "./WatchedMovieList";
-import { WatchedSummary } from "./WatchedSummary";
-import { MovieList } from "./MovieList";
-import { Box } from "./Box";
-import { useMovies } from "./useMovies";
-import { useLocalStorageState } from "./useLocalStorageState";
+import { MovieDetails } from "./UIcomponents/MovieDetails";
+import { ErrorMessage } from "./components/ErrorMessage";
+import { Loader } from "./components/Loader";
+import { NavBar } from "./UIcomponents/NavBar";
+import { NumResults } from "./components/NumResults";
+import { Search } from "./UIcomponents/Search";
+import { Main } from "./LayoutMain";
+import { WatchedMovieList } from "./UIcomponents/WatchedMovieList";
+import { WatchedSummary } from "./UIcomponents/WatchedSummary";
+import { MovieList } from "./UIcomponents/MovieList";
+import { Box } from "./components/Box";
+import { useMovies } from "./custom Hooks/useMovies";
+import { useLocalStorageState } from "./custom Hooks/useLocalStorageState";
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -24,15 +24,11 @@ export default function App() {
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
-
   function handleCloseMovie() {
     setSelectedId(null);
   }
-
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
-
-    // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {

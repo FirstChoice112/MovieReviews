@@ -1,10 +1,8 @@
-/* DÖLJ SCROLLBAR FÖR .box OCH .list */
 .box::-webkit-scrollbar,
 .list::-webkit-scrollbar {
   display: none;
 }
 
-/* SMOOTH SCROLL FÖR .box OCH .list */
 .box,
 .list {
   scroll-behavior: smooth;
