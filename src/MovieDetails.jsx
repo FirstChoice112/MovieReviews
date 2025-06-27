@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { KEY } from "./useMovies";
 import { Loader } from "./Loader";
 import StarRating from "./StarRating";
+import { useKey } from "./useKey";
 
 export function MovieDetails({
   selectedId,
@@ -57,6 +58,8 @@ export function MovieDetails({
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
+
+  useKey("Escape", onCloseMovie);
 
   useEffect(
     function () {
